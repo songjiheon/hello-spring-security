@@ -34,6 +34,11 @@ public class SecurityConfig {
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/products/add", "/products/*/delete").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
+                .requestMatchers("/products/add",
+                 "/products/*/delete",
+                 "/products/*/edit")   // ← 신규 추가
+                .hasRole("ADMIN")
+
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
